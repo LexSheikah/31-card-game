@@ -1,0 +1,146 @@
+/* Importaciones */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+/* Declaración de variables */
+:root {
+  --dark-purple: #5A45ED;
+  --light-purple: #cbb6f9;
+  --black: #222831;
+  --white: #FFFFFF;
+  --dark-gray: #393e46;
+  --normal-gray: #888888;
+  --light-gray: #eeeeee;
+}
+
+/* Inicializando etiquetas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+header, footer {
+  padding: 0 25px;
+}
+
+header {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+#brand {
+  font-size: 24px;
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+}
+
+.menu-item {
+  margin-left: 15px;
+}
+
+main {
+  height: 80vh;
+  padding: 25px 50px;
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+#banner {
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+}
+
+#options, #table {
+  padding-top: 15px;
+}
+
+#options {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#deck {
+  margin-bottom: 15px;
+}
+
+.card {
+  height: 150px;
+  width: 110px;
+  border: 1px solid var(--normal-gray);
+  border-radius: 3px;
+  background-color: var(--light-gray);
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M8 0v20L0 10M16 0v10L8 0M16 10v10H8'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.btn-primary {
+  width: 150px;
+  padding: 5px;
+  margin: 5px;
+  background-color: var(--black);
+  color: var(--white);
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  transform: scale(1.1);
+}
+
+.btn-primary:active {
+  background-color: var(--white);
+  color: var(--black);
+  border: 2px solid var(--black);
+}
+
+.btn-primary:focus {
+  outline: none;
+}
+
+#table {
+  width: 75%;
+}
+
+.status {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.player-name {
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.player-points {
+  margin-right: 15px;
+}
+
+.hand {
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid var(--black);
+  border-radius: 5px;
+}
+
+footer {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}

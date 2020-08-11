@@ -8,35 +8,45 @@
 </head>
 <body>
   <header>
-    <h2>31 Card Game</h2>
+    <h1 id="brand">31 Card Game</h1>
     <nav>
-      <ul>
-        <li>How to play</li>
-        <li>About</li>
+      <ul id="menu">
+        <li class="menu-item">How to play</li>
+        <li class="menu-item">About</li>
       </ul>
     </nav>
   </header>
   <main>
-    <h1>31 Card Game</h1>
+    <h2 id="banner">31 Card Game</h2 id="banner">
 
     <section id="options">
       <div id="deck">
         <div class="card"></div>
       </div>
-      <button id="request">Pedir carta</button>
-      <button id="stay">Quedarse</button>
+      <button id="request" class="btn-primary">Pedir carta</button>
+      <button id="stay" class="btn-primary">Quedarse</button>
     </section>
 
     <section id="table">
       <article id="player-cpu">
-        <h3>CPU</h3>
-        <div class="hand"></div>
+        <h3 class="player-name">CPU</h3>
+        <div class="hand">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </div>
       </article>
 
       <article id="player-one">
-        <h3>Jugador 1</h3>
-        <h4>Total de puntos: <span id="points">0</span></h4>
-        <div class="hand"></div>
+        <div class="status">
+          <h3 class="player-name">Jugador 1</h3>
+          <h4 class="player-points">Total de puntos: <span id="points">0</span></h4>
+        </div>
+        <div class="hand">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </div>
       </article>
     </section>
   </main>

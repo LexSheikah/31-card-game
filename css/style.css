@@ -3,8 +3,6 @@
 
 /* Declaración de variables */
 :root {
-  --dark-purple: #5A45ED;
-  --light-purple: #cbb6f9;
   --black: #222831;
   --white: #FFFFFF;
   --dark-gray: #393e46;
@@ -133,6 +131,11 @@ main {
   border: 2px solid var(--black);
 }
 
+.btn-primary:disabled {
+  background-color: var(--normal-gray);
+  color: var(--white);
+}
+
 .btn-primary:focus {
   outline: none;
 }
@@ -157,6 +160,7 @@ main {
 }
 
 .hand {
+  min-height: 164px;
   padding: 5px 10px;
   display: flex;
   justify-content: space-evenly;

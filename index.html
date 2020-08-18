@@ -30,7 +30,7 @@
 
     <section id="table">
       <article id="player-cpu">
-        <h3 class="player-name">CPU</h3>
+        <h3 class="player-name">Banquero</h3>
         <div id="cpu-hand" class="hand">
           <!-- CPU's Cards -->
         </div>
@@ -38,7 +38,7 @@
 
       <article id="player-one">
         <div class="status">
-          <h3 class="player-name">Jugador 1</h3>
+          <h3 class="player-name">Jugador</h3>
           <h4 class="player-points">Total de puntos: <span id="points">0</span></h4>
         </div>
         <div id="one-hand"  class="hand">
@@ -46,6 +46,26 @@
         </div>
       </article>
     </section>
+
+    <!-- Modales -->
+    <div id="modal-background" class="modal hidden"></div>
+    <div id="modal-results" class="modal hidden">
+      <article class="modalBox">
+        <h2 id="winner"></h2>
+        <div id="game-results">
+          <div class="player-results">
+            <h3 class="results-name">Jugador</h3>
+            <h3 id="player-score" class="results-points"></h3>
+          </div>
+          <div class="player-results">
+            <h3 class="results-name">Banquero</h3>
+            <h3 id="banker-score" class="results-points"></h3>
+          </div>
+        </div>
+        <button id="restart" class="btn-primary">Jugar de nuevo</button>
+      </article>
+    </div>
+    <!-- <div id="modal-as-selection" class="modal"></div> -->
   </main>
   <footer>
     <h3>Kodigo 2020 &copy; Lex Sheikah</h3>

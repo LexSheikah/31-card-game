@@ -134,24 +134,33 @@ const starterDeck = [
   new Card('S11', 'Q', 10, 'spade'),
   new Card('S12', 'K', 10, 'spade')
 ]
-const banker = new CPU('cpu1', 'Banquero'),
-      player1 = new Player('p1', 'Juegar'),
+const banner = document.querySelector('#banner'),
       bankerHand = document.querySelector('#cpu-hand'),
       playerHand = document.querySelector('#one-hand'),
       playerScore = document.querySelector('#points'),
       btnStart = document.querySelector('#start'),
+      btnRestart = document.querySelector('#restart'),
       btnRequest = document.querySelector('#request'),
-      btnStay = document.querySelector('#stay')
+      btnStay = document.querySelector('#stay'),
+      modalBackground = document.querySelector('#modal-background'),
+      modalResults = document.querySelector('#modal-results'),
+      modalAsSelection = document.querySelector('#modal-as-selection'),
+      lblWinner = document.querySelector('#winner'),
+      lblPlayerPoint = document.querySelector('#player-score'),
+      lblBankerPoint = document.querySelector('#banker-score')
 
-let shuffledDeck = banker.shuffle(starterDeck.slice()),
+let banker = new CPU('cpu1', 'Banquero'),
+    player1 = new Player('p1', 'Juegar'),
+    shuffledDeck = banker.shuffle(starterDeck.slice()),
     winner = null,
-    loser = null
+    loser = null,
+    games = 0
 
 const templatingCard = (card) => {
   if(card === undefined) {
-    return '<div class="card card-back"></div>'
+    return '<div class="card card-back cardSwepDown"></div>'
   } else {
-    let cardTemplate = `<div class="card">
+    let cardTemplate = `<div class="card cardSwepUp">
                           <div class="card-footer"><span>${card.name}</span></div>
                           <div class="card-body"><img src="./img/icons/${card.icon}.svg" class="card-icon"></div>
                           <div class="card-header"><span>${card.name}</span></div>
@@ -160,32 +169,43 @@ const templatingCard = (card) => {
   }
 }
 
+const showWinner = msj => {
+  modalBackground.classList.remove('hidden')
+  modalResults.classList.remove('hidden')
+  lblWinner.innerText = msj
+  lblPlayerPoint.innerText = player1.points
+  lblBankerPoint.innerText = banker.points
+}
+
 const checkWinner = () => {
+  let msj = ''
   let player1Difference = 31 - player1.points
   let bankerDifference = 31 - banker.points
 
   if(player1.points > 31) {
     winner = banker
     loser = player1
+    msj = '😭 Perdiste 😭'
   } else if(banker.points > 31) {
     winner = player1
     loser = banker
+    msj = '🎊 Ganaste 🎊'
   } else if (player1Difference === bankerDifference) {
-    console.log('Empate')
+    msj = '😅 Empate 😅'
   } else {
     if(player1Difference < bankerDifference) {
       winner = player1
       loser = banker
+      msj = '🎊 Ganaste 🎊'
     } else {
       winner = banker
       loser = player1
+    msj = '😭 Perdiste 😭'
     }
   }
 
-  console.log('Winner:', winner)
-  console.log('Loser:', loser)
-
-  // finalizar juego
+  showMessage('Juego terminado')
+  showWinner(msj)
 }
 
 const updateScore = (player, points) => {
@@ -224,9 +244,28 @@ const disableButtons = (flag) => {
   btnStay.setAttribute('disabled', 'true')
 }
 
+const showMessage = txt => {
+  banner.innerText = txt
+}
+
+const reset = () => {
+  enableButtons()
+  showMessage('31 Card Game')
+  winner = null
+  loser = null
+  playerScore.innerText = 0
+  bankerHand.innerHTML = ''
+  playerHand.innerHTML = ''
+  banker = new CPU('cpu1', 'Banquero')
+  player1 = new Player('p1', 'Juegar')
+  modalBackground.classList.add('hidden')
+  modalResults.classList.add('hidden')
+}
+
 const startGame = () => {
   enableButtons()
   btnStart.setAttribute('disabled', 'true')
+  showMessage('Turno del Jugador 1')
 
   // Repartiendo cartas iniciales del jugador 1
   for(let i = 0; i < 3; i++) {
@@ -242,12 +281,21 @@ btnStart.addEventListener('click', () => {
   startGame()
 })
 
+btnRestart.addEventListener('click', () => {
+  reset()
+  startGame()
+})
+
 btnRequest.addEventListener('click', () => {
   getCard(player1, playerHand)
 })
 
 btnStay.addEventListener('click', () => {
   disableButtons()
+  showMessage('Turno del Banquero')
+
+  games++
+  if(games % 3 === 0) shuffledDeck = banker.shuffle(starterDeck.slice())
 
   const drawingSimulator = () => {
     setTimeout(() => {

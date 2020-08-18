@@ -111,11 +111,26 @@ main {
   width: 50px;
 }
 
+.cardSwepUp {
+  position: relative;
+  animation-name: swep-up;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.cardSwepDown {
+  position: relative;
+  animation-name: swep-down;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
 .btn-primary {
   width: 150px;
   padding: 5px;
   margin: 5px;
   background-color: var(--black);
+  font-size: 18px;
   color: var(--white);
   border: 2px solid transparent;
   border-radius: 5px;
@@ -168,10 +183,86 @@ main {
   border-radius: 5px;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 150;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-background{
+  background-color: var(--black);
+  opacity: 0.7;
+  z-index: 100;
+}
+
+.modalBox {
+  width: 700px;
+  height: 400px;
+  background-color: var(--white);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+}
+
+#winner {
+  width: 100%;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#game-results {
+  width: 100%;
+  display: flex;
+}
+
+.player-results {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 footer {
   height: 10vh;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+/* ANIMACIONES */
+@keyframes swep-up {
+  0% {
+    bottom: -5vh;
+    opacity: 0%;
+  }
+  100% {
+    bottom: 0;
+    opacity: 100%;
+  }
+}
+
+@keyframes swep-down {
+  0% {
+    bottom: 5vh;
+    opacity: 0%;
+  }
+  100% {
+    bottom: 0;
+    opacity: 100%;
+  }
 }

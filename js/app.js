@@ -7,12 +7,20 @@ class Card {
     this._icon = icon
   }
 
+  get id() {
+    return this._id;
+  }
+
   get name() {
     return this._name;
   }
 
   get value() {
     return this._value;
+  }
+
+  set value(value) {
+    this._value = value;
   }
 
   get icon() {
@@ -72,8 +80,12 @@ class CPU extends Player {
   }
 
   // Método para repartir carta al jugador
-  deal(shuffledDeck, hand) {
-    hand.push(shuffledDeck.pop())
+  deal(shuffledDeck, hand, flag) {
+    let card = shuffledDeck.pop()
+    while (flag && card.name === 'A') {
+      card = shuffledDeck.pop()
+    }
+    hand.push(card)
   }
 }
 
@@ -137,7 +149,7 @@ const starterDeck = [
 const banner = document.querySelector('#banner'),
       bankerHand = document.querySelector('#cpu-hand'),
       playerHand = document.querySelector('#one-hand'),
-      playerScore = document.querySelector('#points'),
+      playerScore = document.querySelectorAll('.points'),
       btnStart = document.querySelector('#start'),
       btnRestart = document.querySelector('#restart'),
       btnRequest = document.querySelector('#request'),
@@ -145,6 +157,7 @@ const banner = document.querySelector('#banner'),
       modalBackground = document.querySelector('#modal-background'),
       modalResults = document.querySelector('#modal-results'),
       modalAsSelection = document.querySelector('#modal-as-selection'),
+      modalBoxBody = document.querySelector('#modalBox-body'),
       lblWinner = document.querySelector('#winner'),
       lblPlayerPoint = document.querySelector('#player-score'),
       lblBankerPoint = document.querySelector('#banker-score')
@@ -210,19 +223,71 @@ const checkWinner = () => {
 
 const updateScore = (player, points) => {
   player.points = player.points + points
-  if(player === player1) playerScore.innerText = player.points
+  if(player === player1) playerScore[0].innerText = player.points
   if(player.points >= 31) checkWinner()
 }
 
-const getCard = (player, hand) => {
-  banker.deal(shuffledDeck, player.hand)
+const closeModalAsSelecction = () => {
+  modalBackground.classList.add('hidden')
+  modalAsSelection.classList.add('hidden')
+}
+
+const showModalAsSelecction = card => {
+  let points = 0
+  player1.hand.forEach( c => points += c.value)
+
+  playerScore[1].innerText = player1.points
+  if(modalBackground.classList.contains('hidden')) modalBackground.classList.remove('hidden')
+  if(modalAsSelection.classList.contains('hidden')) modalAsSelection.classList.remove('hidden')
+
+  let template = `<div id="${card.id}" class="AsViewer">
+                    <div id="${card.id}A" class="card cardSwepUp">
+                      <div class="card-footer"><span>1</span></div>
+                      <div class="card-body"><img src="./img/icons/${card.icon}.svg" class="card-icon"></div>
+                      <div class="card-header"><span>1</span></div>
+                    </div>
+                    <div id="${card.id}B" class="card cardSwepUp">
+                      <div class="card-footer"><span>11</span></div>
+                      <div class="card-body"><img src="./img/icons/${card.icon}.svg" class="card-icon"></div>
+                      <div class="card-header"><span>11</span></div>
+                    </div>
+                  </div>`
+
+  modalBoxBody.insertAdjacentHTML('afterbegin', template)
+
+  let opctions = modalBoxBody.firstElementChild.children
+
+  opctions[0].addEventListener('click', () => {
+    card.value = 1
+    closeModalAsSelecction()
+    modalBoxBody.removeChild(modalBoxBody.firstChild)
+    playerHand.insertAdjacentHTML('beforeend', templatingCard(card))
+    updateScore(player1, card.value)
+  })
+
+  opctions[1].addEventListener('click', () => {
+    card.value = 11
+    closeModalAsSelecction()
+    modalBoxBody.removeChild(modalBoxBody.firstChild)
+    playerHand.insertAdjacentHTML('beforeend', templatingCard(card))
+    updateScore(player1, card.value)
+  })
+
+}
+
+const getCard = (player, hand, flag = false) => {
+  banker.deal(shuffledDeck, player.hand, flag)
   let lastCard = player.hand[player.hand.length - 1]
   if(player === player1) {
-    hand.insertAdjacentHTML('beforeend', templatingCard(lastCard))
+    if(lastCard.name === 'A'){
+      showModalAsSelecction(lastCard)
+    } else {
+      hand.insertAdjacentHTML('beforeend', templatingCard(lastCard))
+    }
   } else {
     hand.insertAdjacentHTML('beforeend', templatingCard())
   }
-  updateScore(player, lastCard.value)
+  if(lastCard.name !== 'A') updateScore(player, lastCard.value)
 }
 
 const thinking = () => {
@@ -253,23 +318,27 @@ const reset = () => {
   showMessage('31 Card Game')
   winner = null
   loser = null
-  playerScore.innerText = 0
+  playerScore[0].innerText = 0
+  playerScore[1].innerText = 0
   bankerHand.innerHTML = ''
   playerHand.innerHTML = ''
   banker = new CPU('cpu1', 'Banquero')
   player1 = new Player('p1', 'Juegar')
   modalBackground.classList.add('hidden')
   modalResults.classList.add('hidden')
+  modalAsSelection.classList.add('hidden')
 }
 
 const startGame = () => {
+  games++
+  if(games % 3 === 0) shuffledDeck = banker.shuffle(starterDeck.slice())
   enableButtons()
   btnStart.setAttribute('disabled', 'true')
   showMessage('Turno del Jugador 1')
 
   // Repartiendo cartas iniciales del jugador 1
   for(let i = 0; i < 3; i++) {
-    getCard(player1, playerHand)
+    getCard(player1, playerHand, true)
   }
   // Repartiendo cartas iniciales para el banquero
   for(let i = 0; i < 3; i++) {
@@ -293,9 +362,6 @@ btnRequest.addEventListener('click', () => {
 btnStay.addEventListener('click', () => {
   disableButtons()
   showMessage('Turno del Banquero')
-
-  games++
-  if(games % 3 === 0) shuffledDeck = banker.shuffle(starterDeck.slice())
 
   const drawingSimulator = () => {
     setTimeout(() => {

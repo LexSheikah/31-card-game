@@ -236,6 +236,19 @@ main {
   align-items: center;
 }
 
+#modalBox-header, #modalBox-body, .AsViewer {
+  width: 100%;
+}
+
+#modalBox-header {
+  text-align: center;
+}
+
+.AsViewer {
+  display: flex;
+  justify-content: space-around;
+}
+
 footer {
   height: 10vh;
   display: flex;

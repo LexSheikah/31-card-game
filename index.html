@@ -39,7 +39,7 @@
       <article id="player-one">
         <div class="status">
           <h3 class="player-name">Jugador</h3>
-          <h4 class="player-points">Total de puntos: <span id="points">0</span></h4>
+          <h4 class="player-points">Total de puntos: <span class="points">0</span></h4>
         </div>
         <div id="one-hand"  class="hand">
           <!-- Player1's Cards -->
@@ -65,7 +65,17 @@
         <button id="restart" class="btn-primary">Jugar de nuevo</button>
       </article>
     </div>
-    <!-- <div id="modal-as-selection" class="modal"></div> -->
+    <div id="modal-as-selection" class="modal hidden">
+      <article class="modalBox">
+        <div id="modalBox-header">
+          <h2>Elige un valor para la carta A</h2>
+          <h3>Recuerda que tienes <span class="points"></span> puntos</h3>
+        </div>
+        <div id="modalBox-body">
+          <!-- As Cards -->
+        </div>
+      </article>
+    </div>
   </main>
   <footer>
     <h3>Kodigo 2020 &copy; Lex Sheikah</h3>

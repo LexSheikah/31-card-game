@@ -160,7 +160,8 @@ const banner = document.querySelector('#banner'),
       modalBoxBody = document.querySelector('#modalBox-body'),
       lblWinner = document.querySelector('#winner'),
       lblPlayerPoint = document.querySelector('#player-score'),
-      lblBankerPoint = document.querySelector('#banker-score')
+      lblBankerPoint = document.querySelector('#banker-score'),
+      playerCards = document.querySelectorAll('.player-cards')
 
 let banker = new CPU('cpu1', 'Banquero'),
     player1 = new Player('p1', 'Juegar'),
@@ -188,6 +189,14 @@ const showWinner = msj => {
   lblWinner.innerText = msj
   lblPlayerPoint.innerText = player1.points
   lblBankerPoint.innerText = banker.points
+
+  player1.hand.forEach( card => {
+    playerCards[0].insertAdjacentHTML('beforeend', templatingCard(card))
+  })
+
+  banker.hand.forEach( card => {
+    playerCards[1].insertAdjacentHTML('beforeend', templatingCard(card))
+  })
 }
 
 const checkWinner = () => {
@@ -326,6 +335,8 @@ const reset = () => {
   modalBackground.classList.add('hidden')
   modalResults.classList.add('hidden')
   modalAsSelection.classList.add('hidden')
+  playerCards[0].innerHTML = ''
+  playerCards[1].innerHTML = ''
 }
 
 const startGame = () => {

@@ -50,16 +50,16 @@
     <!-- Modales -->
     <div id="modal-background" class="modal hidden"></div>
     <div id="modal-results" class="modal hidden">
-      <article class="modalBox">
+      <article class="modalBox modalBox-bg">
         <h2 id="winner"></h2>
         <div id="game-results">
           <div class="player-results">
-            <h2 class="results-name">Jugador</h2>
-            <h3 id="player-score" class="results-points"></h3>
+            <h3 class="results-name">Jugador <span id="player-score" class="results-points"></span></h3>
+            <div class="player-cards"></div>
           </div>
           <div class="player-results">
-            <h2 class="results-name">Banquero</h2>
-            <h3 id="banker-score" class="results-points"></h3>
+            <h3 class="results-name">Banquero <span id="banker-score" class="results-points"></span></h3>
+            <div class="player-cards"></div>
           </div>
         </div>
         <button id="restart" class="btn-primary">Jugar de nuevo</button>

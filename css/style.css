@@ -1,5 +1,5 @@
 /* Importaciones */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
 /* Declaración de variables */
 :root {
@@ -8,6 +8,7 @@
   --dark-gray: #393e46;
   --normal-gray: #888888;
   --light-gray: #eeeeee;
+  --red: #E64C3C;
 }
 
 /* Inicializando etiquetas */
@@ -18,7 +19,9 @@
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-family: 'Bree Serif', serif;
+  /* background: radial-gradient(circle closest-side, #4B9B42, #397833); */
 }
 
 header, footer {
@@ -44,11 +47,12 @@ header {
 
 .menu-item {
   margin-left: 15px;
+  font-weight: bold;
 }
 
 main {
   height: 80vh;
-  padding: 25px 50px;
+  padding: 15px 50px;
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
@@ -57,6 +61,7 @@ main {
 #banner {
   height: fit-content;
   width: 100%;
+  color: var(--red);
   text-align: center;
 }
 
@@ -81,8 +86,10 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--white);
   border: 1px solid var(--normal-gray);
   border-radius: 3px;
+  box-shadow: 4px 4px 10px 0px rgba(0,0,0,0.5);
 }
 
 .card-back {
@@ -171,12 +178,17 @@ main {
 }
 
 .player-points {
+  color: var(--dark-gray);
   margin-right: 15px;
 }
 
+.points {
+  color: var(--red);
+}
+
 .hand {
-  min-height: 164px;
-  padding: 5px 10px;
+  min-height: 174px;
+  padding: 10px;
   display: flex;
   justify-content: space-evenly;
   border: 2px solid var(--black);
@@ -212,7 +224,6 @@ main {
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
-  align-content: space-around;
   justify-content: center;
 }
 
@@ -227,13 +238,23 @@ main {
 #game-results {
   width: 100%;
   display: flex;
+  justify-content: space-evenly;
 }
 
 .player-results {
-  width: 50%;
+  width: 150px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.results-points {
+  padding: 10px;
+  color: var(--red);
+
 }
 
 #modalBox-header, #modalBox-body, .AsViewer {
@@ -241,12 +262,17 @@ main {
 }
 
 #modalBox-header {
-  text-align: center;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .AsViewer {
+  padding: 0 20%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 footer {

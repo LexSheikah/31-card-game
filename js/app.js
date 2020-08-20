@@ -272,7 +272,6 @@ const showModalAsSelecction = card => {
     playerHand.insertAdjacentHTML('beforeend', templatingCard(card))
     updateScore(player1, card.value)
   })
-
 }
 
 const getCard = (player, hand, flag = false) => {

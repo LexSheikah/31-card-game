@@ -23,9 +23,9 @@
       <div id="deck">
         <div class="card card-back"></div>
       </div>
-      <button id="start" class="btn-primary">Iniciar juego</button>
-      <button id="request" class="btn-primary">Pedir carta</button>
-      <button id="stay" class="btn-primary">Quedarse</button>
+      <button id="start" class="btn btn-primary">Iniciar juego</button>
+      <button id="request" class="btn btn-primary">Pedir carta</button>
+      <button id="stay" class="btn btn-warning">Quedarse</button>
     </section>
 
     <section id="table">
@@ -54,15 +54,21 @@
         <h2 id="winner"></h2>
         <div id="game-results">
           <div class="player-results">
-            <h3 class="results-name">Jugador <span id="player-score" class="results-points"></span></h3>
+            <div class="results-name">
+              <h3>Cartas del Jugador</h3>
+              <h3>Puntos: <span id="player-score" class="results-points"></span></h3>
+            </div>
             <div class="player-cards"></div>
           </div>
           <div class="player-results">
-            <h3 class="results-name">Banquero <span id="banker-score" class="results-points"></span></h3>
+            <div class="results-name">
+              <h3>Cartas del Banquero</h3>
+              <h3>Puntos: <span id="banker-score" class="results-points"></span></h3>
+            </div>
             <div class="player-cards"></div>
           </div>
         </div>
-        <button id="restart" class="btn-primary">Jugar de nuevo</button>
+        <button id="restart" class="btn btn-primary">Jugar de nuevo</button>
       </article>
     </div>
     <div id="modal-as-selection" class="modal hidden">

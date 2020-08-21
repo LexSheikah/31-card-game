@@ -222,7 +222,7 @@ const checkWinner = () => {
     } else {
       winner = banker
       loser = player1
-    msj = '😭 Perdiste 😭'
+      msj = '😭 Perdiste 😭'
     }
   }
 
@@ -291,18 +291,12 @@ const getCard = (player, hand, flag = false) => {
       showModalAsSelecction(lastCard)
     } else {
       hand.insertAdjacentHTML('beforeend', templatingCard(lastCard))
+      updateScore(player, lastCard.value)
     }
   } else {
+    banker.points += lastCard.value
     hand.insertAdjacentHTML('beforeend', templatingCard())
   }
-  if(lastCard.name !== 'A') updateScore(player, lastCard.value)
-}
-
-const thinking = () => {
-  let probability = 31 - banker.points
-  let random = Math.floor(Math.random() * 10) + 1
-  if(random <= probability) return true
-  else return false
 }
 
 const enableButtons = () => {
@@ -375,11 +369,12 @@ btnStay.addEventListener('click', () => {
 
   const drawingSimulator = () => {
     setTimeout(() => {
-      if(thinking()) {
-        getCard(banker, bankerHand)
-        drawingSimulator()
-      } else {
+      if(banker.points > 27) {
         if(winner === null) checkWinner()
+      } else {
+        getCard(banker, bankerHand)
+        // console.log(banker.points)
+        drawingSimulator()
       }
     }, 1000)
   }

@@ -21,7 +21,6 @@
 body {
   font-size: 18px;
   font-family: 'Bree Serif', serif;
-  /* background: radial-gradient(circle closest-side, #4B9B42, #397833); */
 }
 
 header, footer {
@@ -81,6 +80,7 @@ main {
 }
 
 .card {
+  margin: 0px 10px;
   padding: 5px;
   height: 150px;
   width: 110px;
@@ -133,7 +133,7 @@ main {
   animation-fill-mode: forwards;
 }
 
-.btn-primary {
+.btn {
   max-height: 35px;
   width: 150px;
   padding: 5px;
@@ -145,7 +145,15 @@ main {
   border-radius: 5px;
 }
 
-.btn-primary:hover {
+.btn-primary {
+  background-color: var(--black);
+}
+
+.btn-warning {
+  background-color: var(--red);
+}
+
+.btn-primary:hover, .btn-warning:hover {
   transform: scale(1.1);
 }
 
@@ -155,12 +163,18 @@ main {
   border: 2px solid var(--black);
 }
 
-.btn-primary:disabled {
+.btn-warning:active {
+  background-color: var(--white);
+  color: var(--red);
+  border: 2px solid var(--red);
+}
+
+.btn-primary:disabled, .btn-warning:disabled {
   background-color: var(--normal-gray);
   color: var(--white);
 }
 
-.btn-primary:focus {
+.btn-primary:focus, .btn-warning:focus {
   outline: none;
 }
 
@@ -227,6 +241,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: space-around;
 }
 
 .modalBox-bg {
@@ -236,13 +251,14 @@ main {
 
 #winner {
   width: 100%;
-  font-size: 48px;
+  font-size: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #game-results {
+  margin-bottom: 5px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -258,7 +274,11 @@ main {
 }
 
 .results-name {
-  padding: 5px;
+  padding: 15px;
+  display: flex;
+  /* flex-direction: row; */
+
+  justify-content: space-between;
 }
 
 .results-points {
@@ -267,9 +287,8 @@ main {
 }
 
 .player-cards {
-  /* overflow: scroll; */
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 #modalBox-header, #modalBox-body, .AsViewer {

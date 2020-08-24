@@ -1,14 +1,9 @@
 // Clases
 class Card {
-  constructor(id, name, value, icon) {
-    this._id = id,
+  constructor(name, value, icon) {
     this._name = name,
     this._value = value,
     this._icon = icon
-  }
-
-  get id() {
-    return this._id;
   }
 
   get name() {
@@ -29,8 +24,7 @@ class Card {
 }
 
 class Player {
-  constructor(id, name, points = 0, hand = []) {
-    this._id = id,
+  constructor(name, points = 0, hand = []) {
     this._name = name,
     this._points = points,
     this._hand = hand
@@ -89,62 +83,56 @@ class CPU extends Player {
   }
 }
 
-class Human extends Player {
-  constructor(id, name, points, hand) {
-    super(id, name, points, hand)
-  }
-}
-
 // Variables
 const starterDeck = [
-  new Card('H01', 'A', 11, 'heart'),
-  new Card('H02', '2', 2, 'heart'),
-  new Card('H03', '3', 3, 'heart'),
-  new Card('H04', '4', 4, 'heart'),
-  new Card('H05', '5', 5, 'heart'),
-  new Card('H06', '6', 6, 'heart'),
-  new Card('H07', '7', 7, 'heart'),
-  new Card('H08', '8', 8, 'heart'),
-  new Card('H09', '9', 9, 'heart'),
-  new Card('H10', 'J', 10, 'heart'),
-  new Card('H11', 'Q', 10, 'heart'),
-  new Card('H12', 'K', 10, 'heart'),
-  new Card('D01', 'A', 11, 'diamond'),
-  new Card('D02', '2', 2, 'diamond'),
-  new Card('D03', '3', 3, 'diamond'),
-  new Card('D04', '4', 4, 'diamond'),
-  new Card('D05', '5', 5, 'diamond'),
-  new Card('D06', '6', 6, 'diamond'),
-  new Card('D07', '7', 7, 'diamond'),
-  new Card('D08', '8', 8, 'diamond'),
-  new Card('D09', '9', 9, 'diamond'),
-  new Card('D10', 'J', 10, 'diamond'),
-  new Card('D11', 'Q', 10, 'diamond'),
-  new Card('D12', 'K', 10, 'diamond'),
-  new Card('C01', 'A', 11, 'clover'),
-  new Card('C02', '2', 2, 'clover'),
-  new Card('C03', '3', 3, 'clover'),
-  new Card('C04', '4', 4, 'clover'),
-  new Card('C05', '5', 5, 'clover'),
-  new Card('C06', '6', 6, 'clover'),
-  new Card('C07', '7', 7, 'clover'),
-  new Card('C08', '8', 8, 'clover'),
-  new Card('C09', '9', 9, 'clover'),
-  new Card('C10', 'J', 10, 'clover'),
-  new Card('C11', 'Q', 10, 'clover'),
-  new Card('C12', 'K', 10, 'clover'),
-  new Card('S01', 'A', 11, 'spade'),
-  new Card('S02', '2', 2, 'spade'),
-  new Card('S03', '3', 3, 'spade'),
-  new Card('S04', '4', 4, 'spade'),
-  new Card('S05', '5', 5, 'spade'),
-  new Card('S06', '6', 6, 'spade'),
-  new Card('S07', '7', 7, 'spade'),
-  new Card('S08', '8', 8, 'spade'),
-  new Card('S09', '9', 9, 'spade'),
-  new Card('S10', 'J', 10, 'spade'),
-  new Card('S11', 'Q', 10, 'spade'),
-  new Card('S12', 'K', 10, 'spade')
+  new Card('A', 11, 'heart'),
+  new Card('2', 2, 'heart'),
+  new Card('3', 3, 'heart'),
+  new Card('4', 4, 'heart'),
+  new Card('5', 5, 'heart'),
+  new Card('6', 6, 'heart'),
+  new Card('7', 7, 'heart'),
+  new Card('8', 8, 'heart'),
+  new Card('9', 9, 'heart'),
+  new Card('J', 10, 'heart'),
+  new Card('Q', 10, 'heart'),
+  new Card('K', 10, 'heart'),
+  new Card('A', 11, 'diamond'),
+  new Card('2', 2, 'diamond'),
+  new Card('3', 3, 'diamond'),
+  new Card('4', 4, 'diamond'),
+  new Card('5', 5, 'diamond'),
+  new Card('6', 6, 'diamond'),
+  new Card('7', 7, 'diamond'),
+  new Card('8', 8, 'diamond'),
+  new Card('9', 9, 'diamond'),
+  new Card('J', 10, 'diamond'),
+  new Card('Q', 10, 'diamond'),
+  new Card('K', 10, 'diamond'),
+  new Card('A', 11, 'clover'),
+  new Card('2', 2, 'clover'),
+  new Card('3', 3, 'clover'),
+  new Card('4', 4, 'clover'),
+  new Card('5', 5, 'clover'),
+  new Card('6', 6, 'clover'),
+  new Card('7', 7, 'clover'),
+  new Card('8', 8, 'clover'),
+  new Card('9', 9, 'clover'),
+  new Card('J', 10, 'clover'),
+  new Card('Q', 10, 'clover'),
+  new Card('K', 10, 'clover'),
+  new Card('A', 11, 'spade'),
+  new Card('2', 2, 'spade'),
+  new Card('3', 3, 'spade'),
+  new Card('4', 4, 'spade'),
+  new Card('5', 5, 'spade'),
+  new Card('6', 6, 'spade'),
+  new Card('7', 7, 'spade'),
+  new Card('8', 8, 'spade'),
+  new Card('9', 9, 'spade'),
+  new Card('J', 10, 'spade'),
+  new Card('Q', 10, 'spade'),
+  new Card('K', 10, 'spade')
 ]
 const banner = document.querySelector('#banner'),
       bankerHand = document.querySelector('#cpu-hand'),
@@ -163,8 +151,8 @@ const banner = document.querySelector('#banner'),
       lblBankerPoint = document.querySelector('#banker-score'),
       playerCards = document.querySelectorAll('.player-cards')
 
-let banker = new CPU('cpu1', 'Banquero'),
-    player1 = new Player('p1', 'Juegar'),
+let banker = new CPU('Banquero'),
+    player1 = new Player('Juegar'),
     shuffledDeck = banker.shuffle(starterDeck.slice()),
     winner = null,
     loser = null,
@@ -201,29 +189,17 @@ const showWinner = msj => {
 
 const checkWinner = () => {
   let msj = ''
-  let player1Difference = 31 - player1.points
-  let bankerDifference = 31 - banker.points
 
-  if(player1.points > 31) {
+  if( player1.points > 31 || (banker.points > player1.points && banker.points <= 31) ) {
     winner = banker
     loser = player1
     msj = '😭 Perdiste 😭'
-  } else if(banker.points > 31) {
+  } else if( banker.points > 31 || (player1.points > banker.points && player1.points <= 31) ) {
     winner = player1
     loser = banker
     msj = '🎊 Ganaste 🎊'
-  } else if (player1Difference === bankerDifference) {
+  } else if ( banker.points === player1.points ) {
     msj = '😅 Empate 😅'
-  } else {
-    if(player1Difference < bankerDifference) {
-      winner = player1
-      loser = banker
-      msj = '🎊 Ganaste 🎊'
-    } else {
-      winner = banker
-      loser = player1
-      msj = '😭 Perdiste 😭'
-    }
   }
 
   showMessage('Juego terminado')
@@ -242,20 +218,17 @@ const closeModalAsSelecction = () => {
 }
 
 const showModalAsSelecction = card => {
-  let points = 0
-  player1.hand.forEach( c => points += c.value)
-
   playerScore[1].innerText = player1.points
   if(modalBackground.classList.contains('hidden')) modalBackground.classList.remove('hidden')
   if(modalAsSelection.classList.contains('hidden')) modalAsSelection.classList.remove('hidden')
 
-  let template = `<div id="${card.id}" class="AsViewer">
-                    <div id="${card.id}A" class="card cardSwepUp">
+  let template = `<div class="AsViewer">
+                    <div class="card cardSwepUp">
                       <div class="card-footer"><span>1</span></div>
                       <div class="card-body"><img src="./img/icons/${card.icon}.svg" class="card-icon"></div>
                       <div class="card-header"><span>1</span></div>
                     </div>
-                    <div id="${card.id}B" class="card cardSwepUp">
+                    <div class="card cardSwepUp">
                       <div class="card-footer"><span>11</span></div>
                       <div class="card-body"><img src="./img/icons/${card.icon}.svg" class="card-icon"></div>
                       <div class="card-header"><span>11</span></div>
@@ -296,6 +269,7 @@ const getCard = (player, hand, flag = false) => {
   } else {
     banker.points += lastCard.value
     hand.insertAdjacentHTML('beforeend', templatingCard())
+    if (banker.points >= 31) checkWinner()
   }
 }
 
@@ -324,8 +298,8 @@ const reset = () => {
   playerScore[1].innerText = 0
   bankerHand.innerHTML = ''
   playerHand.innerHTML = ''
-  banker = new CPU('cpu1', 'Banquero')
-  player1 = new Player('p1', 'Juegar')
+  banker = new CPU('Banquero')
+  player1 = new Player('Juegar')
   modalBackground.classList.add('hidden')
   modalResults.classList.add('hidden')
   modalAsSelection.classList.add('hidden')
@@ -369,11 +343,10 @@ btnStay.addEventListener('click', () => {
 
   const drawingSimulator = () => {
     setTimeout(() => {
-      if(banker.points > 27) {
+      if(banker.points > 26) {
         if(winner === null) checkWinner()
       } else {
         getCard(banker, bankerHand)
-        // console.log(banker.points)
         drawingSimulator()
       }
     }, 1000)
